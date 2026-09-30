@@ -66,8 +66,8 @@ pip install pandas numpy matplotlib seaborn jupyter
 ### 3. Execução
 1. Clone este repositório ou transfira os ficheiros para a sua máquina local:
    ```bash
-   git clone https://github.com/marianaxavier/analise-ia-sus.git
-   cd analise-ia-sus
+   git clone https://github.com/marianaxavier/analise-ia-saude.git
+   cd analise-ia-saude
    ```
 2. Inicie o ambiente do Jupyter:
    ```bash
