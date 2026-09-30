@@ -1,104 +1,78 @@
-# Seminário: IA na Saúde — Equidade e Vieses
+# IA na Saúde: Equidade e Vieses
+## Acesso e infraestrutura de dados: SUS × Saúde Suplementar
 
-## Tópico 1: Acesso e Infraestrutura (SUS vs. Saúde Suplementar)
+Análise exploratória de dados públicos sobre a desigualdade de infraestrutura entre o SUS e a saúde suplementar no Brasil: equipamentos de imagem, conectividade, leitos de UTI e adoção de inteligência artificial.
 
-Este repositório contém o Jupyter Notebook utilizado na preparação e apresentação da **Parte 1** do seminário sobre **Inteligência Artificial na Saúde**, com foco nas assimetrias de acesso, conectividade e infraestrutura tecnológica no sistema de saúde brasileiro.
+## 📌 Pergunta de Pesquisa
+> *Se a IA aprende com dado, e a infraestrutura que gera dado está concentrada de um lado só, ela aprende sobre o Brasil inteiro ou só sobre um quarto dele?*
 
-### 📌 Contexto Acadêmico
+---
 
-* **Instituição:** Universidade Federal da Paraíba (UFPB)
+## 📖 Contexto e Autoria
+Este repositório e notebook correspondem à **Parte 1 (Acesso e Infraestrutura)** do seminário *Equidade e Vieses: o impacto da IA no SUS vs. Saúde Privada no Brasil*, apresentado na disciplina de **Computadores e Sociedade** (Bacharelado em Ciência de Dados e Inteligência Artificial, UFPB, prof. Ed Porto). As partes seguintes do seminário (vieses algorítmicos e responsabilidade profissional) não se encontram neste notebook.
 
-* **Curso:** Bacharelado em Ciência de Dados e Inteligência Artificial
-
-* **Disciplina:** Computadores e Sociedade
-
-* **Docente:** Prof. Ed Porto
-
-* **Integrantes do Grupo:**
-
+* **Autoria:**
   * Helena Couto dos Santos
-
   * Mariana Esthefany Xavier dos Santos
-
   * Vitória Maria da Silva
 
-### 🎯 Pergunta-Guia do Seminário
+---
 
-> *"Quando um algoritmo de IA erra, ele erra igual para todo mundo, ou o erro pesa mais para quem já tem menos acesso?"*
+## 🗂️ Sumário do Notebook
 
-### 🗺️ Mapeamento e Estrutura da Apresentação
+0. **Configuração:** Definição da paleta de cores, estilo global e funções auxiliares.
+1. **Contexto: um sistema de saúde dual:** Análise populacional e utilizadores do SUS vs. planos de saúde por UF/região.
+2. **Parque tecnológico de imagem:** Densidade de equipamentos de imagem e indicadores de exames.
+3. **Conectividade:** Infraestrutura digital nas instituições de saúde.
+4. **Uso efetivo de IA:** Nível de adoção e tipos de IA aplicados.
+5. **Iniciativas de IA no SUS:** Casos práticos e iniciativas de UTI inteligente no setor público.
+6. **Saúde suplementar: pesquisa Anahp:** Mapeamento do uso de IA no setor privado.
+7. **A dupla desigualdade: setorial e regional:** Distribuição de leitos de UTI e assimetrias regionais.
+8. **Por que a distância persiste:** Análise dos fatores estruturais e orçamentários.
+9. **Síntese: descompasso estrutural de dados:** Índice de concentração no setor privado.
+10. **Conclusões:** Reflexões finais sobre equidade e representatividade dos dados.
+11. **Notas metodológicas e limitações:** Considerações sobre as fontes e estimativas.
+12. **Referências:** Fontes bibliográficas e dados utilizados.
 
-O notebook está organizado seguindo estritamente a ordem dos slides e do roteiro de fala (duração estimada da etapa: 20 minutos):
+---
 
-| Bloco / Trecho | Tempo | Slides | Conteúdo no Notebook | 
- | ----- | ----- | ----- | ----- | 
-| **0. Abertura do Grupo** | `0:00–1:00` | 1–2 | Guia de fala e contexto do grupo | 
-| **1. Gancho & Enquadramento** | `1:00–2:00` | 3–6 | Tabela regional (Distribuição SUS × Saúde Suplementar) | 
-| **2. Bloco 1: Parque Tecnológico** | `2:00–5:30` | 7–8 | Gráfico 1 (Equipamentos de imagem por 100 mil hab.) | 
-| **3. Bloco 2: Conectividade** | `5:30–9:00` | 9 | Gráfico 2 (Acesso a dados e internet nos estabelecimentos) | 
-| **4. Bloco 3: Uso Efetivo de IA** | `9:00–12:00` | 10–12 | Gráfico 3 (Adoção de IA e ritmos de implementação) | 
-| **5. Bloco 4: A Dupla Desigualdade** | `12:00–15:00` | 13 | Gráfico 4 (Cruzamento setor público/privado e regiões) | 
-| **6. Razões da Persistência** | `15:00–17:00` | 14 | Guia de fala e análise de gargalos | 
-| **7. Síntese: Mismatch Estrutural** | `17:00–18:30` | 15 | Gráfico 5 (Descompasso estrutural) | 
-| **8. Encerramento & Transição** | `18:30–20:00` | 16–17 | Guia de fala e passagem para a Pessoa 2 | 
+## 📊 Fontes e Natureza dos Dados
 
-### 📊 Fontes de Dados e Metodologia
+| Seção | Dado | Fonte | Natureza |
+|---|---|---|---|
+| 1 | População, usuários do SUS e de planos por UF (2024) | Atlas da Radiologia no Brasil 2025 (CBR), adaptado; ANS/IBGE | Dado publicado |
+| 2 | Densidade de equipamentos de imagem por 100 mil hab. | Estimativas de referência CNES/DATASUS · Atlas 2025 (CBR) | **Estimativa de referência** |
+| 2 | Mamógrafos no Acre; IDPP geral de exames de imagem (2023) | Atlas 2025 (CBR); ContilNet (28/09/2025) | Dado publicado |
+| 3, 4 | Infraestrutura digital; adoção e tipos de IA | TIC Saúde 2025 (Cetic.br/NIC.br), 3.270 gestores, fev.–nov. 2025 | Pesquisa amostral |
+| 5 | Iniciativa de UTI inteligente no SUS | g1 Rio (27/06/2026); Rede CNT Brasil (set. 2026) | Reportagem |
+| 6 | Uso de recursos de IA em instituições de saúde | Anahp em parceria com Wolters Kluwer (2025) | Pesquisa (base seletiva) |
+| 7 | Leitos de UTI por 10 mil hab. por região | Padrões de distribuição regional CNES/DATASUS | **Estimativa ilustrativa** |
+| 9 | Índice de concentração no setor privado | ANS/IBGE; Atlas 2025 (CBR); AMIB (2026) | **Síntese própria** |
 
-Os dados e estimativas contidos no notebook foram extraídos das seguintes referências:
+---
 
-1. **TIC Saúde 2025** (*Cetic.br / NIC.br*): Pesquisa realizada com 3.270 gestores de estabelecimentos de saúde entre fevereiro e novembro de 2025. *(Base para os Gráficos 2 e 3)*.
+## 🚀 Requisitos e Como Executar
 
-2. **Atlas da Radiologia no Brasil 2025** (*Colégio Brasileiro de Radiologia - CBR*) e **CNES/DATASUS**. *(Base para a Tabela Regional e Gráfico 1)*.
+### 1. Pré-requisitos
+Certifique-se de ter o **Python 3.9+** e o **Jupyter Notebook** ou **VS Code** instalados na sua máquina.
 
-3. **Síntese Própria e Estimativas Ilustrativas** com base em padrões regionais da ANS, CNES e DATASUS. *(Base para os Gráficos 4 e 5)*.
+### 2. Instalação das Bibliotecas
+Instale as bibliotecas necessárias executando o seguinte comando no terminal:
 
-> ⚠️ **Nota metodológica:** Os Gráficos 1, 4 e 5 tratam-se de estimativas/sínteses analíticas de referência. Conforme indicado no roteiro, devem ser citados como *"estimativas com base no CNES/DATASUS/ANS"*.
+```bash
+pip install pandas numpy matplotlib seaborn jupyter
+```
 
-### 🛠️ Tecnologias e Bibliotecas Utilizadas
-
-O notebook utiliza a stack padrão de análise de dados em Python 3:
-
-* [**Pandas**](https://pandas.pydata.org/?utm_source=gemini)**:** Manipulação e estruturação dos dados demográficos e de saúde por UF/Região.
-
-* [**NumPy**](https://numpy.org/?utm_source=gemini)**:** Operações numéricas.
-
-* [**Matplotlib**](https://matplotlib.org/?utm_source=gemini) **& [Seaborn](https://seaborn.pydata.org/?utm_source=gemini):** Visualização de dados e geração de gráficos com paleta de cores idêntica à dos slides (`#254370` para SUS e `#17947f` para setor Privado).
-
-### 🚀 Como Executar o Notebook
-
-1. **Clone o repositório:**
-
+### 3. Execução
+1. Clone este repositório ou transfira os ficheiros para a sua máquina local:
+   ```bash
+   git clone https://github.com/marianaxavier/analise-ia-sus.git
+   cd analise-ia-sus
    ```
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
-   
-   ```
-
-2. **Crie um ambiente virtual (opcional, mas recomendado):**
-
-   ```
-   python -m venv venv
-   source venv/bin/activate  # Linux/macOS
-   # ou: venv\Scripts\activate # Windows
-   
-   ```
-
-3. **Instale as dependências:**
-
-   ```
-   pip install pandas numpy matplotlib seaborn jupyter
-   
-   ```
-
-4. **Inicie o Jupyter Notebook:**
-
-   ```
+2. Inicie o ambiente do Jupyter:
+   ```bash
    jupyter notebook
-   
    ```
-
-### 💡 Destaques do Código
-
-* **Consulta rápida por UF:** O notebook possui a função `consulta_uf('Nome_da_UF')` para consultar rapidamente a distribuição entre SUS e planos de saúde durante o debate (ex: `consulta_uf('Paraíba')`).
-
-* **Padronização visual:** Contém funções auxiliares (`fonte()`, `anotar_barras_v()`, `anotar_barras_h()`) configuradas para garantir que as figuras geradas sigam a identidade visual exata da apresentação.
+3. Abra o ficheiro do notebook (`.ipynb`) e execute as células sequencialmente.
+4. **Nota:** Todos os dados estão embutidos no próprio notebook, pelo que não é necessária a descarga de ficheiros de dados externos.
+5. Os gráficos gerados serão gravados automaticamente na pasta local `figuras/`.
